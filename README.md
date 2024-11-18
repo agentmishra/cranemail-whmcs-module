@@ -1,4 +1,4 @@
-WHMCS module to handle provisioing of domains on the Namecrane Mail platform.
+WHMCS module to handle provisioning of domains on the Namecrane Mail platform.
 
 *This is still in Beta, feedback is welcome!*
 
