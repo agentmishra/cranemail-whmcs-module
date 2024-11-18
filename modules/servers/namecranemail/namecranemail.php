@@ -94,15 +94,15 @@ function namecranemail_ConfigOptions() {
 function namecranemail_CreateAccount($vars) {
 
   $post = [
-    'domain'                    => $vars['domain'],
-    'disklimit'                 => $vars['configoption1'],
-    'userlimit'                 => $vars['configoption2'],
-    'useraliaslimit'            => $vars['configoption4'],
-    'spamexperts'               => $vars['configoption3'],
-    'spamexperts_adminaccess'   => $vars['configoption5'],
-    'domainaliaslimit'          => $vars['configoption6'],
-    'archive_years'             => $vars['configoption7'],
-    'archive_direction'         => $vars['configoption8'],
+    'domain'                  => $vars['domain'],
+    'disklimit'               => (isset($vars['configoptions']['disklimit']) ? $vars['configoptions']['disklimit'] : $vars['configoption1']),
+    'userlimit'               => (isset($vars['configoptions']['userlimit']) ? $vars['configoptions']['userlimit'] : $vars['configoption2']),
+    'useraliaslimit'          => (isset($vars['configoptions']['useraliaslimit']) ? $vars['configoptions']['useraliaslimit'] : $vars['configoption4']),
+    'spamexperts'             => (isset($vars['configoptions']['spamexperts']) ? $vars['configoptions']['spamexperts'] : $vars['configoption3']),
+    'spamexperts_adminaccess' => $vars['configoption5'],
+    'domainaliaslimit'        => (isset($vars['configoptions']['domainaliaslimit']) ? $vars['configoptions']['domainaliaslimit'] : $vars['configoption6']),
+    'archive_years'           => (isset($vars['configoptions']['archive_years']) ? $vars['configoptions']['archive_years'] : $vars['configoption7']),
+    'archive_direction'       => (isset($vars['configoptions']['archive_direction']) ? $vars['configoptions']['archive_direction'] : $vars['configoption8'])
   ];
 
   $return = namecranemail_execute('POST', 'domain/create', $vars, $post);
@@ -172,15 +172,15 @@ function namecranemail_UnsuspendAccount($vars) {
 function namecranemail_ChangePackage($vars) {
 
   $post = [
-    'domain'                    => $vars['domain'],
-    'disklimit'                 => $vars['configoption1'],
-    'userlimit'                 => $vars['configoption2'],
-    'useraliaslimit'            => $vars['configoption4'],
-    'spamexperts'               => $vars['configoption3'],
-    'spamexperts_adminaccess'   => $vars['configoption5'],
-    'domainaliaslimit'          => $vars['configoption6'],
-    'archive_years'             => $vars['configoption7'],
-    'archive_direction'         => $vars['configoption8'],
+    'domain'                  => $vars['domain'],
+    'disklimit'               => (isset($vars['configoptions']['disklimit']) ? $vars['configoptions']['disklimit'] : $vars['configoption1']),
+    'userlimit'               => (isset($vars['configoptions']['userlimit']) ? $vars['configoptions']['userlimit'] : $vars['configoption2']),
+    'useraliaslimit'          => (isset($vars['configoptions']['useraliaslimit']) ? $vars['configoptions']['useraliaslimit'] : $vars['configoption4']),
+    'spamexperts'             => (isset($vars['configoptions']['spamexperts']) ? $vars['configoptions']['spamexperts'] : $vars['configoption3']),
+    'spamexperts_adminaccess' => $vars['configoption5'],
+    'domainaliaslimit'        => (isset($vars['configoptions']['domainaliaslimit']) ? $vars['configoptions']['domainaliaslimit'] : $vars['configoption6']),
+    'archive_years'           => (isset($vars['configoptions']['archive_years']) ? $vars['configoptions']['archive_years'] : $vars['configoption7']),
+    'archive_direction'       => (isset($vars['configoptions']['archive_direction']) ? $vars['configoptions']['archive_direction'] : $vars['configoption8'])
   ];
 
   $return = namecranemail_execute('POST', 'domain/modify', $vars, $post);
