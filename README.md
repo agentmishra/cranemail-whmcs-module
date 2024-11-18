@@ -37,8 +37,8 @@ Available values:
 | `disklimit` | `disklimit\|Disk Storage (GB)` | `quantity` | Total disk storage available (GB) |
 | `useraliaslimit` | `useraliaslimit\|User Aliases` | `quantity` | How many email aliases the domain may have | 
 | `spamexperts` | `spamexperts\|Spamexperts` | `yesno` | How many email accounts the domain may have | 
-| `domainaliaslimit` | `domainaliaslimit\|Domain Aliases` | `quantity` | Control how many domain alaises the domain may have |
-| `archive_years` | `archive_years\|Email Archiving (years)` | `dropdown` | How many years to archiving emails for |
+| `domainaliaslimit` | `domainaliaslimit\|Domain Aliases` | `quantity` | How many domain aliases the domain may have |
+| `archive_years` | `archive_years\|Email Archiving (years)` | `dropdown` | How many years to archive emails for |
 | `archive_direction` | `archive_direction\|Email Archiving Direction` | `dropdown` (values `in`, `out,` `inout`) | Archive incoming, outgoing, or both, emails |
 
 
