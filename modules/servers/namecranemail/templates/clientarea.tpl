@@ -18,8 +18,13 @@
     <a class="nav-link active" href="#" data-toggle="tab" data-target="#nav-resources" role="tab" aria-controls="nav-home" aria-selected="true">Resource Usage</a>
   </li>
   <li class="nav-item">
-  <a class="nav-link" href="#" data-toggle="tab" data-target="#nav-dns" role="tab" aria-controls="nav-home" aria-selected="true">DNS Records</a>
+    <a class="nav-link" href="#" data-toggle="tab" data-target="#nav-dns" role="tab" aria-controls="nav-home" aria-selected="true">DNS Records</a>
   </li>
+  {if $dkim}
+  <li class="nav-item">
+    <a class="nav-link" href="#" data-toggle="tab" data-target="#nav-dkim" role="tab" aria-controls="nav-home" aria-selected="true">DKIM Records</a>
+  </li>
+  {/if}
 </ul>
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="nav-resources" role="tabpanel" style="padding-top: 10px;">
@@ -92,5 +97,25 @@
       </tbody>
     </table>
   </div>
+  {if $dkim}
+  <div class="tab-pane fade" id="nav-dkim" role="tabpanel" style="padding-top: 10px;">
+    <table cellspacing="0" cellpadding="3">
+      <thead>
+        <th>Type</th>
+        <th>Name / Host</th>
+        <th>Value</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>TXT</td>
+          <td>{$dkim['selector']}</td>
+          <td>
+            <textarea class="form-control" rows="12" disabled>v=DKIM1;k=rsa;h={$dkim['algo']};p={$dkim['key']}</textarea>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  {/if}
 </div>
 {/if}

@@ -229,14 +229,15 @@ function namecranemail_ClientArea($vars) {
   if(!$stats['status']) {
     $error = 'Couldn\'t get domain statistics.';
   }
-
+  
   return [
     'templatefile' => 'templates/clientarea',
     'vars' => [
       'vars'  => $vars,
       'error' => $error,
       'info'  => $stats['data']['data'],
-      'dns'   => $stats['data']['data']['dns']
+      'dns'   => $stats['data']['data']['dns'],
+      'dkim'  => $stats['data']['data']['dkim']
     ]
   ];
 
