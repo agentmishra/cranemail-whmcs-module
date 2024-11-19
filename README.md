@@ -18,7 +18,6 @@ WHMCS module to handle provisioning of domains on the Namecrane Mail platform.
 - need to implement the `UsageUpdate` function to update storage usage.
 - add `logModuleCall` to some of the exceptions in `namecranemail_execute()`
 - Pulling resellers whitelabel domain and use that in place of our included whitelabel domain
-- Implement SSO for Spamexperts Domain Administrator access?
 
 ***Order time customizing (À la carte)***
 
