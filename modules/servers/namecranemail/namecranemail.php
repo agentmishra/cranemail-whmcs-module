@@ -15,52 +15,52 @@ function namecranemail_MetaData() {
 
 function namecranemail_ConfigOptions() {
 
-	return [
-		'Disk Space (GB)' => [ 
-			'Type'          => 'text',
-			'Size'          => '25',
+  return [
+    'Disk Space (GB)' => [ 
+      'Type'          => 'text',
+      'Size'          => '25',
       'Default'       => 1,
       'SimpleMode'    => true
     ],
-		'Max Email Users'   => [ 
-			'Type'        => 'text',
-			'Size'        => '8',
+    'Max Email Users' => [ 
+      'Type'        => 'text',
+      'Size'        => '8',
       'Description' => '0 = Unlimited',
       'Default'     => 0,      
-      'SimpleMode' => true
+      'SimpleMode'  => true
     ],
-		'SpamExperts' => [ 
-			'Type'    => 'dropdown',
+    'SpamExperts' => [ 
+      'Type'    => 'dropdown',
       'Options' => [
         '0' => 'Disabled',
         '1' => 'Enabled'
       ],
-			'SimpleMode' => true
-    ],
-		'Max User Aliases' => [ 
-			'Type'        => 'text',
-			'Size'        => '8',
-      'Description' => '0 = Unlimited',
-      'Default'     => 0,      
       'SimpleMode' => true
     ],
-		'SpamExperts Access' => [ 
-			'Type'    => 'dropdown',
+    'Max User Aliases' => [ 
+      'Type'        => 'text',
+      'Size'        => '8',
+      'Description' => '0 = Unlimited',
+      'Default'     => 0,      
+      'SimpleMode'  => true
+    ],
+    'SpamExperts Access' => [ 
+      'Type'    => 'dropdown',
       'Options' => [
         'primary' => 'Primary Administrator Only',
-        'all' => 'All Domain Administrators'
+        'all'     => 'All Domain Administrators'
       ],
-			'SimpleMode' => true
+      'SimpleMode' => true
     ],
-		'Max Domain Aliases' => [ 
-			'Type'        => 'text',
-			'Size'        => '8',
+    'Max Domain Aliases' => [ 
+      'Type'        => 'text',
+      'Size'        => '8',
       'Description' => '0 = Unlimited',
       'Default'     => 0,
       'SimpleMode'  => true,
-  	],
+    ],
     'Email Archiving (Years)' => [
-			'Type'    => 'dropdown',
+      'Type'    => 'dropdown',
       'Options' => [
         '0' => 'Disabled',
         '1' => '1 Year',
@@ -79,10 +79,10 @@ function namecranemail_ConfigOptions() {
       'SimpleMode' => true,
     ],    
     'Email Archiving Direction' => [
-			'Type'    => 'dropdown',
+      'Type'    => 'dropdown',
       'Options' => [
-        'in' => 'Incoming',
-        'out' => 'Outgoing',
+        'in'    => 'Incoming',
+        'out'   => 'Outgoing',
         'inout' => 'Both'
       ],
       'SimpleMode' => true,
@@ -134,7 +134,7 @@ function namecranemail_TerminateAccount($vars) {
   }
 
   return 'success';
- 
+
 }
 
 function namecranemail_SuspendAccount($vars) {
@@ -150,7 +150,7 @@ function namecranemail_SuspendAccount($vars) {
   }
 
   return 'success';
- 
+
 }
 
 function namecranemail_UnsuspendAccount($vars) {
@@ -166,7 +166,7 @@ function namecranemail_UnsuspendAccount($vars) {
   }
 
   return 'success';
- 
+
 }
 
 function namecranemail_ChangePackage($vars) {
@@ -202,7 +202,7 @@ function namecranemail_AdminServicesTabFields($vars) {
   $stats = namecranemail_execute('POST', 'domain/info', $vars, $post);
 
   if(!$stats['status']) {
-    $html = 'Couldn\'t get domains statistics.';
+    $html = 'Couldn\'t get domain statistics.';
   } else {
 
     $smarty = new Smarty();
@@ -226,15 +226,81 @@ function namecranemail_ClientArea($vars) {
 
   $stats = namecranemail_execute('POST', 'domain/info', $vars, $post);
 
+  if(!$stats['status']) {
+    $error = 'Couldn\'t get domain statistics.';
+  }
+
   return [
     'templatefile' => 'templates/clientarea',
     'vars' => [
-      'info' => $stats['data']['data']
+      'vars'  => $vars,
+      'error' => $error,
+      'info'  => $stats['data']['data'],
+      'dns'   => $stats['data']['data']['dns']
     ]
   ];
 
 }
 
+function namecranemail_ClientAreaCustomButtonArray(array $vars) {
+
+  $return = [];
+
+  if($vars['configoptions']['spamexperts'] || $vars['configoption3']) {
+    $return['Login to SpamExperts'] = 'ssoSpamExperts';
+  }
+
+  return $return;
+
+}
+
+function namecranemail_AdminCustomButtonArray(array $vars) {
+
+  $return = [];
+
+  if($vars['configoptions']['spamexperts'] || $vars['configoption3']) {
+    $return['Login to SpamExperts'] = 'adminSpamExpertsSSO';
+  }
+
+  return $return;
+
+}
+
+function namecranemail_getSpamExpertsSSO(array $vars) {
+
+  $post = [
+    'domain' => $vars['domain']
+  ];
+
+  return namecranemail_execute('POST', 'spamexperts/login', $vars, $post);
+
+}
+
+function namecranemail_adminSpamExpertsSSO(array $vars) {
+
+  $sso = namecranemail_getSpamExpertsSSO($vars);
+
+  if(!$sso['status']) {
+    return 'Couldn\'t get authentication token.';
+  }
+
+  return 'window|' . $sso['data']['url'];
+
+}
+
+function namecranemail_ssoSpamExperts(array $vars) {
+
+  $sso = namecranemail_getSpamExpertsSSO($vars);
+
+  if(!$sso['status']) {
+    return 'Couldn\'t get authentication token.';
+  }
+
+  header('Location: ' . $sso['data']['url']);
+
+  exit();
+
+}
 
 function namecranemail_execute($method, $action, $vars, $post = []) {
 
