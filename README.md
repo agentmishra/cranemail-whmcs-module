@@ -45,6 +45,7 @@ Available values:
 
 | Value | Description |
 |-|-|
+| `0` | `Disabled` |
 | `1` | `1 Year` |
 | `2` | `2 Years` |
 | `3` | `3 Years` |
