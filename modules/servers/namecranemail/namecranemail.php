@@ -86,6 +86,22 @@ function namecranemail_ConfigOptions() {
         'inout' => 'Both'
       ],
       'SimpleMode' => true,
+    ],
+    'File Storage' => [ 
+      'Type'    => 'dropdown',
+      'Options' => [
+        '0' => 'Disabled',
+        '1' => 'Enabled'
+      ],
+      'SimpleMode' => true
+    ],
+    'Office Suite' => [ 
+      'Type'    => 'dropdown',
+      'Options' => [
+        '0' => 'Disabled',
+        '1' => 'Enabled'
+      ],
+      'SimpleMode' => true
     ]
   ];
 
@@ -102,7 +118,9 @@ function namecranemail_CreateAccount($vars) {
     'spamexperts_adminaccess' => $vars['configoption5'],
     'domainaliaslimit'        => (isset($vars['configoptions']['domainaliaslimit']) ? $vars['configoptions']['domainaliaslimit'] : $vars['configoption6']),
     'archive_years'           => (isset($vars['configoptions']['archive_years']) ? $vars['configoptions']['archive_years'] : $vars['configoption7']),
-    'archive_direction'       => (isset($vars['configoptions']['archive_direction']) ? $vars['configoptions']['archive_direction'] : $vars['configoption8'])
+    'archive_direction'       => (isset($vars['configoptions']['archive_direction']) ? $vars['configoptions']['archive_direction'] : $vars['configoption8']),
+    'filestorage'             => (isset($vars['configoptions']['filestorage']) ? $vars['configoptions']['filestorage'] : $vars['configoption9']),
+    'office'                  => (isset($vars['configoptions']['office']) ? $vars['configoptions']['office'] : $vars['configoption10']),
   ];
 
   $return = namecranemail_execute('POST', 'domain/create', $vars, $post);
@@ -180,7 +198,9 @@ function namecranemail_ChangePackage($vars) {
     'spamexperts_adminaccess' => $vars['configoption5'],
     'domainaliaslimit'        => (isset($vars['configoptions']['domainaliaslimit']) ? $vars['configoptions']['domainaliaslimit'] : $vars['configoption6']),
     'archive_years'           => (isset($vars['configoptions']['archive_years']) ? $vars['configoptions']['archive_years'] : $vars['configoption7']),
-    'archive_direction'       => (isset($vars['configoptions']['archive_direction']) ? $vars['configoptions']['archive_direction'] : $vars['configoption8'])
+    'archive_direction'       => (isset($vars['configoptions']['archive_direction']) ? $vars['configoptions']['archive_direction'] : $vars['configoption8']),
+    'filestorage'             => (isset($vars['configoptions']['filestorage']) ? $vars['configoptions']['filestorage'] : $vars['configoption9']),
+    'office'                  => (isset($vars['configoptions']['office']) ? $vars['configoptions']['office'] : $vars['configoption10'])
   ];
 
   $return = namecranemail_execute('POST', 'domain/modify', $vars, $post);

@@ -16,6 +16,14 @@
             <td align="left">{$info['domainaliascount']} / <strong>{if $info['domainaliaslimit']}{$info['domainaliaslimit']}{else}&infin;{/if}</strong></td>
         </tr>
         <tr>
+            <td class="fieldarea">File Storage:</td>
+            <td align="left"><strong>{if $info['filestorage']}Enabeld{else}Disabled{/if}</strong></td>
+        </tr>
+        <tr>
+            <td class="fieldarea">Office Suite:</td>
+            <td align="left"><strong>{if $info['office']}Enabled{else}Disabled{/if}</strong></td>
+        </tr>
+        <tr>
             <td class="fieldarea">Spamexperts Status:</td>
             <td align="left"><strong>{if $info['spamexperts']}Enabled{else}Disabled{/if}</strong></td>
         </tr>

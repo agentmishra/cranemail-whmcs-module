@@ -9,7 +9,7 @@ WHMCS module to handle provisioning of domains on the Namecrane Mail platform.
 3) Click the `Refresh` icon incase you don't already have an API key.
 4) Upload the module to your WHMCS install
 5) Add a `Server`, picking `Namecrane Mail` from the module list
-6) For the `Hostname`, just put `namecrane.com`. This value isn't used at the moment, so it doesn't matter.
+6) For the `Hostname`, just put `workspace.org`. This value isn't used at the moment, so it doesn't matter.
 7) Place the `API KEY` in the `Access Hash` textarea.
 8) Create your plans, specifying `Namecrane Mail` as the module.
 
@@ -39,6 +39,8 @@ Available values:
 | `domainaliaslimit` | `domainaliaslimit\|Domain Aliases` | `quantity` | How many domain aliases the domain may have |
 | `archive_years` | `archive_years\|Email Archiving (years)` | `dropdown` | How many years to archive emails for |
 | `archive_direction` | `archive_direction\|Email Archiving Direction` | `dropdown` (values `in`, `out,` `inout`) | Archive incoming, outgoing, or both, emails |
+| `filestorage` | `filestorage\|Online Web Drive` | `yesno` | Enable the online File Storage & Sharing |
+| `office` | `office\|Office Suite` | `yesno` | Enable the online Document creating & editing feature suite |
 
 
 ***Archiving Years Options***

@@ -28,53 +28,74 @@
 </ul>
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="nav-resources" role="tabpanel" style="padding-top: 10px;">
-    <table cellspacing="0" cellpadding="3">
-      <thead>
-        <th>Resource</th>
-        <th>Usage / Limit</th>
-        <th>Resource</th>
-        <th>Usage / Limit</th>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="fieldarea">Disk Space</td>
-          <td>{$info['diskusage'] / 1024} GB / <strong>{$info['disklimit'] / 1024} GB</strong></td>
-          <td class="fieldarea">Email Users</td>
-          <td>{$info['usercount']} / <strong>{if $info['userlimit']}{$info['userlimit']}{else}&infin;{/if}</strong></td>
-        </tr>
-        <tr>
-          <td class="fieldarea">SpamExperts Anti Spam</td>
-          <td><strong>{if $info['spamexperts']}Enabled{else}Disabled{/if}</strong></td>
-          <td class="fieldarea">Email Aliases</td>
-          <td>{$info['useraliascount']} / <strong>{if $info['useraliaslimit']}{$info['useraliaslimit']}{else}&infin;{/if}</strong></td>
-        </tr>
-        <tr>
-          <td class="fieldarea">Email Archiving</td>
-          <td><strong>{if $info['archive_years']}Enabled{else}Disabled{/if}</strong></td>
-          <td class="fieldarea">Domain Aliases</td>
-          <td>{$info['domainaliascount']} / <strong>{if $info['domainaliaslimit']}{$info['domainaliaslimit']}{else}&infin;{/if}</strong></td>
-        </tr>
-        <tr>
-          <td class="fieldarea">Archive Direction</td>
-          <td>
-            <strong>
-            {if $info['archive_direction'] == 'in'}
-              Incoming Only
-            {elseif $info['archive_direction'] == 'out'}
-              Outgoing Only
-            {elseif $info['archive_direction'] == 'inout'}
-              Incoming + Outgoing
-            {/if}
-            </strong>
-          </td>              
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td colspan="4" class="fieldarea text-right">Last Updated: <strong>{$info['lastupdated']}</strong></td>
-        </tr>        
-      </tbody>
-    </table>
+    <div class="row">
+      <div class="col-6">
+        <table cellspacing="0" cellpadding="3">
+          <thead>
+            <th>Resource</th>
+            <th>Usage / Limit</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fieldarea">Disk Space</td>
+              <td>{$info['diskusage'] / 1024} GB / <strong>{$info['disklimit'] / 1024} GB</strong></td>
+            </tr>
+            <tr>
+              <td class="fieldarea">Email Users</td>
+              <td>{$info['usercount']} / <strong>{if $info['userlimit']}{$info['userlimit']}{else}&infin;{/if}</strong></td>
+            </tr>
+            <tr>
+              <td class="fieldarea">Email Aliases</td>
+              <td>{$info['useraliascount']} / <strong>{if $info['useraliaslimit']}{$info['useraliaslimit']}{else}&infin;{/if}</strong></td>
+            </tr>
+            <tr>
+              <td class="fieldarea">Domain Aliases</td>
+              <td>{$info['domainaliascount']} / <strong>{if $info['domainaliaslimit']}{$info['domainaliaslimit']}{else}&infin;{/if}</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-6">
+        <table cellspacing="0" cellpadding="3">
+          <thead>
+            <th>Feature</th>
+            <th>Status</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fieldarea">SpamExperts Anti Spam</td>
+              <td><strong>{if $info['spamexperts']}Enabled{else}Disabled{/if}</strong></td>
+            </tr>
+            <tr>
+              <td class="fieldarea">File Storage</td>
+              <td><strong>{if $info['filestorage']}Enabled{else}Disabled{/if}</strong></td>
+            </tr>
+            <tr>
+              <td class="fieldarea">Office Suite</td>
+              <td><strong>{if $info['office']}Enabled{else}Disabled{/if}</strong></td>
+            </tr>
+            <tr>
+              <td class="fieldarea">Email Archiving</td>
+              <td><strong>{if $info['archive_years']}Enabled{else}Disabled{/if}</strong></td>
+            </tr>
+            <tr>
+              <td class="fieldarea">Archive Direction</td>
+              <td>
+                <strong>
+                {if $info['archive_direction'] == 'in'}
+                  Incoming Only
+                {elseif $info['archive_direction'] == 'out'}
+                  Outgoing Only
+                {elseif $info['archive_direction'] == 'inout'}
+                  Incoming + Outgoing
+                {/if}
+                </strong>
+              </td>              
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
   <div class="tab-pane fade" id="nav-dns" role="tabpanel" style="padding-top: 10px;">
     <table cellspacing="0" cellpadding="3">
