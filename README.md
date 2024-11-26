@@ -21,7 +21,7 @@ WHMCS module to handle provisioning of domains on the Namecrane Mail platform.
 
 ***Order time customizing (À la carte)***
 
-You're can to add `Configuration Options` to allow users to on-demand customize their resources. These values override whatever is set in the plan itself.
+You can to add `Configuration Options` to allow users to on-demand customize their resources. These values override whatever is set in the plan itself.
 
 A value must be split by a pipe character (`|`) and must have the below `Option Name` on the left side of the pipe.
 You can then put your own description on the right side seen in the example.
