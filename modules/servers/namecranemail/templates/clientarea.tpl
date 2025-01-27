@@ -18,15 +18,15 @@
 <ul class="nav nav-tabs">
   {if $verified['status']}
   <li class="nav-item">
-    <a class="nav-link active" href="#" data-toggle="tab" data-target="#nav-resources" role="tab" aria-controls="nav-home" aria-selected="true">Resource Usage</a>
+    <a class="nav-link active" href="#" data-toggle="tab" data-target="#nav-resources" role="tab" aria-controls="nav-home" {if $verified['status']}aria-selected="true"{/if}>Resource Usage</a>
   </li>
   {/if}
   <li class="nav-item">
-    <a class="nav-link" href="#" data-toggle="tab" data-target="#nav-dns" role="tab" aria-controls="nav-home" aria-selected="true">DNS Records</a>
+    <a class="nav-link {if !$verified['status']}active{/if}" href="#" data-toggle="tab" data-target="#nav-dns" role="tab" aria-controls="nav-home" {if !$verified['status']}aria-selected="true"{/if}>DNS Records</a>
   </li>
   {if $dkim && $verified['status']}
   <li class="nav-item">
-    <a class="nav-link" href="#" data-toggle="tab" data-target="#nav-dkim" role="tab" aria-controls="nav-home" aria-selected="true">DKIM Records</a>
+    <a class="nav-link" href="#" data-toggle="tab" data-target="#nav-dkim" role="tab" aria-controls="nav-home">DKIM Records</a>
   </li>
   {/if}
 </ul>
@@ -104,35 +104,15 @@
     </div>
   </div>
   {/if}
-  <div class="tab-pane fade" id="nav-dns" role="tabpanel" style="padding-top: 10px;">
+  <div class="tab-pane fade {if !$verified['status']}show active{/if}" id="nav-dns" role="tabpanel" style="padding-top: 10px;">
 
     {if !$verified['status']}
 
-    <div class="alert alert-warning">
+    <br />
+
+    <div class="alert alert-danger">
       You must verify you own this domain before it is fully functional.
     </div>
-
-    <br />
-
-    <table cellspacing="0" cellpadding="3">
-      <thead>
-        <th>Type</th>
-        <th>Name / Host</th>
-        <th>Value</th>
-      </thead>
-      <tbody>
-        <tr>
-          <td>TXT</td>
-          <td>workspace-verification.{$vars['domain']}.</td>
-          <td>
-            <code>{$verified['txt']}</code>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <br />
-
     {/if}
 
     <table cellspacing="0" cellpadding="3">
@@ -142,6 +122,15 @@
         <th>Value</th>
       </thead>
       <tbody>
+      {if !$verified['status']}
+      <tr>
+        <td>TXT</td>
+        <td>workspace-verification.{$vars['domain']}.</td>
+        <td>
+          <code>{$verified['txt']}</code>
+        </td>
+      </tr>
+      {/if}
       {foreach from=$dns item=$record}
         <tr>
           <td>{$record['type']}</td>

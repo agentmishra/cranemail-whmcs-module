@@ -1,8 +1,12 @@
 <table style="margin: 20px" cellspacing="0" cellpadding="3" >
     <tbody>
         <tr>
+        <td class="fieldarea">Domain Verified:</td>
+            <td align="left">{if $info['verified']['status']}Yes{else}<strong>No</strong>{/if}</strong></td>
+        </tr>
+        <tr>
             <td class="fieldarea">Disk Space:</td>
-            <td align="left">{$info['diskusage'] / 1024} GB / <strong>{$info['disklimit'] / 1024} GB</strong></td></tr>
+            <td align="left">{$info['diskusage'] / 1024} GB / <strong>{$info['disklimit'] / 1024} GB</strong></td>
         <tr>
             <td class="fieldarea">Email Users:</td>
             <td align="left">{$info['usercount']} / <strong>{if $info['userlimit']}{$info['userlimit']}{else}&infin;{/if}</strong></td>
@@ -17,7 +21,7 @@
         </tr>
         <tr>
             <td class="fieldarea">File Storage:</td>
-            <td align="left"><strong>{if $info['filestorage']}Enabeld{else}Disabled{/if}</strong></td>
+            <td align="left"><strong>{if $info['filestorage']}Enabled{else}Disabled{/if}</strong></td>
         </tr>
         <tr>
             <td class="fieldarea">Office Suite:</td>
